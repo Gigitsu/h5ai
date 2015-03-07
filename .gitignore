@@ -2,3 +2,15 @@ build
 local
 node_modules
 test
+
+# Idea project files
+.idea/
+*.iml
+
+# OSX files
+._*
+.Trashes
+.DS_Store
+.LSOverride
+.AppleDouble
+.Spotlight-V100
