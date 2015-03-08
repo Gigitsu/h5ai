@@ -1,6 +1,7 @@
 modulejs.define('core/types', ['config', '_'], function (config, _) {
 
     var reEndsWithSlash = /\/$/;
+    var reIsVirtualHost = new RegExp("\\"+config.setup.CURRENT_DOMAIN+"$");
     var regexps = {};
 
 
@@ -23,6 +24,10 @@ modulejs.define('core/types', ['config', '_'], function (config, _) {
 
         if (reEndsWithSlash.test(sequence)) {
             return 'folder';
+        }
+
+        if(reIsVirtualHost.test(sequence)) {
+            return 'virtual-host';
         }
 
         var slashidx = sequence.lastIndexOf('/');
