@@ -128,6 +128,7 @@ class App {
                 if (
                     $this->is_hidden($name)
                     || $this->is_hidden($this->to_url($path) . $name)
+                    || (is_file($htaccess=$path. '/' . $name . '/' . '.htaccess') && preg_match('/Require\sall\sdenied|Deny\sfrom\sall/', file_get_contents($htaccess)))
                     || (!is_readable($path .'/'. $name) && $this->options["view"]["hideIf403"])
                 ) {
                     continue;
