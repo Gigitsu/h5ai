@@ -175,4 +175,13 @@ class Util {
         Util::$size_cache[$path] = $size;
         return $size;
     }
+
+    public static function get_domain($uri) {
+        if(($dot = strpos($uri,'.'))!==false) {
+            $domain = substr($uri, $dot);
+            if(($slash = strpos($domain, '/'))!==false)
+                $domain = substr($domain, 0, $slash);
+            return $domain;
+        } else return false;
+    }
 }

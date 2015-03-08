@@ -10,6 +10,10 @@ modulejs.define('model/item', ['_', 'core/types', 'core/event', 'core/settings',
         return sequence.slice && part.length && sequence.slice(0, part.length) === part;
     }
 
+    function endsWith(sequence, part) {
+        return sequence.indexOf(part, sequence.length - part.length) !== -1;
+    }
+
     function createLabel(sequence) {
 
         sequence = sequence.replace(reEndsWithSlash, '');
@@ -38,7 +42,9 @@ modulejs.define('model/item', ['_', 'core/types', 'core/event', 'core/settings',
 
         absHref = location.forceEncoding(absHref);
 
-        if (!startsWith(absHref, settings.rootHref)) {
+        if(endsWith(absHref, settings.currentDomain)) {
+            absHref = "/" + absHref;
+        } else if (!startsWith(absHref, settings.rootHref)) {
             return null;
         }
 

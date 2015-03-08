@@ -76,6 +76,12 @@ class App {
 
     public function to_url($path, $trailing_slash = true) {
 
+        if($trailing_slash &&
+            (file_exists($path.DIRECTORY_SEPARATOR."index.php") || file_exists($path.DIRECTORY_SEPARATOR."index.html"))) {
+            $parts = explode(DIRECTORY_SEPARATOR, $path);
+            return "//" . $parts[count($parts)-1] . CURRENT_DOMAIN;
+        }
+
         $rel_path = substr($path, strlen(ROOT_PATH));
         $parts = explode("/", $rel_path);
         $encoded_parts = array();

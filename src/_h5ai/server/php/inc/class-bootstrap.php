@@ -98,6 +98,8 @@ class Bootstrap {
         define("HAS_WRITABLE_CACHE", @is_writable(CACHE_PATH));
         define("CMDS_PATH", Util::normalize_path(CACHE_PATH . "/cmds.json", false));
 
+        define("CURRENT_DOMAIN", Util::get_domain($_SERVER["SERVER_NAME"]));
+
 
         // EXTERNAL COMMANDS
         $cmds = Util::load_commented_json(CMDS_PATH);
