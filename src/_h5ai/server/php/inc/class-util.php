@@ -186,13 +186,13 @@ class Util {
     }
 
     public static function get_files($path) {
-        $files = array_values(array_filter(scandir($path), function($item, $path) {
-            return !(is_dir($path . DIRECTORY_SEPARATOR . $item) || Util::starts_with($item, '.'));
-        }));
 
+        $files = scandir($path);
         for ($i = 0; $i < count($files); $i++)
-                $files[$i] = $path . DIRECTORY_SEPARATOR . $files[$i];
+            $files[$i] = $path . DIRECTORY_SEPARATOR . $files[$i];
 
-        return $files;
+        return array_values(array_filter($files, function($file) {
+            return !(is_dir($file) || Util::starts_with(pathinfo($file)["basename"], '.'));
+        }));
     }
 }
