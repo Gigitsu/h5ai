@@ -27,6 +27,10 @@ class App {
         $consts = get_defined_constants(true);
         $setup = $consts["user"];
 
+        $setup["LOG_FILES"] = array_map(function($item) {
+            return $this->to_url($item, false);
+        }, Util::get_files($setup["ROOT_PATH"].$this->get_options()["log"]["dir"]));
+
         $setup["PHP_VERSION"] = PHP_VERSION;
         unset($setup["AS_ADMIN_SESSION_KEY"]);
         unset($setup["PASSHASH"]);

@@ -32,7 +32,7 @@ Options
     */
     "view": {
         "binaryPrefix": false,
-        "hidden": ["^\\.", "^_{{pkg.name}}"],
+        "hidden": ["^\\.", "^logs", "^_{{pkg.name}}"],
         "hideFolders": false,
         "hideIf403": true,
         "hideParentFolder": false,
@@ -105,6 +105,11 @@ Options
     */
     "filter": {
         "enabled": true
+    },
+
+    "log": {
+        "enabled": true,
+        "dir": "/logs"
     },
 
     /*

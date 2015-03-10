@@ -184,4 +184,15 @@ class Util {
             return $domain;
         } else return false;
     }
+
+    public static function get_files($path) {
+        $files = array_values(array_filter(scandir($path), function($item, $path) {
+            return !(is_dir($path . DIRECTORY_SEPARATOR . $item) || Util::starts_with($item, '.'));
+        }));
+
+        for ($i = 0; $i < count($files); $i++)
+                $files[$i] = $path . DIRECTORY_SEPARATOR . $files[$i];
+
+        return $files;
+    }
 }
