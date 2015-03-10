@@ -135,4 +135,8 @@ modulejs.define('ext/preview-txt', ['_', '$', 'marked', 'prism', 'core/settings'
 
 
     init();
+
+    return {
+        enter: onEnter
+    };
 });
